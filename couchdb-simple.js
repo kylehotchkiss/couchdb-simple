@@ -1,6 +1,6 @@
 /**
  *
- * Simple CouchDB Wrapper
+ * couchdb-simple for Node.js
  * Copyright 2011-2013 Kyle Hotchkiss
  * Released under the GPL
  *

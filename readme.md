@@ -1,21 +1,26 @@
-# Couchdb-simple
+# couchdb-simple
 This is my first node module, use with caution. I will be integrating this into my own projects, so it will be battle-tested with time. I have used this database code for personal projects for several months and it's pretty bulletproof, IMO.
 
-This takes care of crap like revisions and stuff like that. But doesn't abstract things too much. You're really just throwing around JS objects. Make sure you standardize your database code and your interfaces to make sure you aren' onion-skinning your data, nor losing records.
+This takes care of revisions and annoyances in the background to help speed you up. But it doesn't abstract things too much. You're really just throwing around JS objects. Make sure you standardize your database code and your interfaces to make sure you aren't onion-skinning your data, nor losing records.
 
-This works nicely with local CouchDB instances or a wonderful service called [Cloudant](http://cloudant.com) that I love very much.
+This works nicely with local [CouchDB](http://couchdb.apache.org/) instances or a wonderful service called [Cloudant](http://cloudant.com) that I love very much.
 
 ## Getting Started
 
-1) `npm install couchdb-simple`
-2) In your code: 
+    npm install couchdb-simple
+    
+## Usage
+
+## Initialization 
+For localhostin' your CouchDB server:
 
     var couchdb = require("couchdb-simple");
-    var database = new couchdb(COUCHDB_HOSTNAME, COUCHDB_PORT, COUCHDB_USERNAME, COUCHDB_PASSWORD);   
-    
-3) Use per the function docs below
+    var database = new couchdb();  
 
-## Usage
+For Cloudant, and other hosted solutions:
+
+    var couchdb = require("couchdb-simple");
+    var database = new couchdb(COUCHDB_HOSTNAME, COUCHDB_PORT, COUCHDB_USERNAME, COUCHDB_PASSWORD);  
 
 ### Reading from the database
 You can read a list of entries:
@@ -37,7 +42,9 @@ or read a single entry:
 ### Writing to the database
 Writing is easy, since you don't have to deal with revision information. At the same time, be careful not to wreck your existing data accidentally! Right now, I don't recommend writing without an entry ID, I think it's easier to handle those synchronously by declaring them before you write to the database.
 
-    database.write('/dir/entryid', DATA_OBJECT, function( results, error ) {
+    var datastore = {};
+
+    database.write('/dir/entryid', datastore, function( results, error ) {
     
     });
 
@@ -65,6 +72,3 @@ There is an error object returned with every request that you can use to determi
 This avoids `try`-`catch` patterns which really make cringe. I don't like things that supposed to run for a very long time to just break when something happens, so I find this method fairly graceful.
     
 I use Cloudant for my Couchdb work, and it never really breaks so these are all over my code, but don't run that often. If interest is there, I can write in a HEAD method to check database availability. 
-
-## Quirks
-This library wasn't written for the masses and may not follow typical Node.js module behavior, like `throw`ing anything. It'll just return a `false` if things go awry, and I like that more since you can try at the database again later (or save to disk) instead of having to deal with annoying `try` `catch` patterns
