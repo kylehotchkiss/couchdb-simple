@@ -169,4 +169,8 @@ Database.prototype = {
     
 }
 
+
+//////////////////////////////
+// Push Database to Node.js //
+//////////////////////////////
 module.exports = Database;
