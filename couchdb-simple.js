@@ -37,10 +37,10 @@ Database.prototype = {
     
         var buffer = "";
         var couchdb = http.get({
-            auth: db_user + ":" + db_pass,
-            host: db_host,
+            auth: this.db_user + ":" + this.db_pass,
+            host: this.db_host,
             path: path,
-            port: db_port
+            port: this.db_port
         }, function( response ) {
             response.setEncoding('utf8');
     
@@ -85,10 +85,10 @@ Database.prototype = {
     
             var buffer = "";
             var couchdb = http.request({
-                auth: db_user + ":" + db_pass,
-                host: db_host,
+                auth: this.db_user + ":" + this.db_pass,
+                host: this.db_host,
                 path: path,
-                port: db_port,
+                port: this.db_port,
                 headers: { "Content-Type": "application/json" },
                 method: "PUT"
             }, function( response ) {
@@ -143,10 +143,10 @@ Database.prototype = {
                 var revision = results._rev;
     
                 var couchdb = http.request({
-                    auth: db_user + ":" + db_pass,
-                    host: db_host,
+                    auth: this.db_user + ":" + this.db_pass,
+                    host: this.db_host,
                     path: path,
-                    port: db_port,
+                    port: this.db_port,
                     headers: { "If-Match": revision },
                     method: "DELETE"
                 }, function( response ) {
