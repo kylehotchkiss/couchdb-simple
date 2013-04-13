@@ -1,16 +1,21 @@
 {
-	"name": "couchdb-simple",
-  	"version": "0.1.1",
-  	"author": "Kyle Hotchkiss <kyle@kylehotchkiss.com>",
-  	"description": "Simple Node.js Wrapper for CouchDB",
-  	"main": "couchdb-simple.js",
-  	"repository": {
-		"type": "git",
-		"url": "https://github.com/kylehotchkiss/couchdb-simple.git"
-  	},
-  	"keywords": [ "couchdb", "database", "nosql", "simple" ],
-	"license": "GPL",
-  	"engines": {
-		"node": ">=0.8"
-  	}
+  "name": "couchdb-simple",
+  "version": "0.1.2",
+  "author": "Kyle Hotchkiss <kyle@kylehotchkiss.com>",
+  "description": "Simple Node.js Wrapper for CouchDB",
+  "main": "couchdb-simple.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kylehotchkiss/couchdb-simple.git"
+  },
+  "keywords": [
+    "couchdb",
+    "database",
+    "nosql",
+    "simple"
+  ],
+  "license": "GPL",
+  "engines": {
+    "node": ">=0.8"
+  }
 }
