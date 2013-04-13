@@ -1,6 +1,6 @@
 {
 	"name": "couchdb-simple",
-  	"version": "0.1.0",
+  	"version": "0.1.1",
   	"author": "Kyle Hotchkiss <kyle@kylehotchkiss.com>",
   	"description": "Simple Node.js Wrapper for CouchDB",
   	"main": "couchdb-simple.js",

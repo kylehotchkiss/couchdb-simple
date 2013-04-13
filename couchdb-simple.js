@@ -25,8 +25,8 @@ var Database = function( db_host, db_port, db_user, db_pass ) {
 // Database Prototype Establishment //
 //////////////////////////////////////
 Database.prototype = {
-    
-    
+
+
     ///////////////////////////
     // DATABASE READ REQUEST //
     ///////////////////////////
@@ -34,7 +34,7 @@ Database.prototype = {
         if ( path.substr(-1) === "/" ) {
             path += "_all_docs?include_docs=true&ascending=true";
         }
-    
+
         var buffer = "";
         var couchdb = http.get({
             auth: this.db_user + ":" + this.db_pass,
@@ -43,23 +43,23 @@ Database.prototype = {
             port: this.db_port
         }, function( response ) {
             response.setEncoding('utf8');
-    
+
             response.on("data", function( data ) {
                 buffer += data;
             });
-    
+
             response.on("end", function() {
                 var results;
-    
+
                 try {
                     results = JSON.parse( buffer );
                 } catch ( error ) { }
-        
+
                 // if results.error, is false
                 if ( typeof callback !== "undefined"
                     && typeof results !== "undefined"
                     && typeof results.error === "undefined" ) {
-    
+
                     callback( results );
                 } else {
                     callback( false, true );
@@ -69,8 +69,8 @@ Database.prototype = {
             callback( false, true );
         });
     },
-    
-    
+
+
     ////////////////////////////
     // DATABASE WRITE REQUEST //
     ////////////////////////////
@@ -82,7 +82,7 @@ Database.prototype = {
                 ////////////////////////////////
                 data._rev = results._rev;
             }
-    
+
             var buffer = "";
             var couchdb = http.request({
                 auth: this.db_user + ":" + this.db_pass,
@@ -93,18 +93,18 @@ Database.prototype = {
                 method: "PUT"
             }, function( response ) {
                 response.setEncoding('utf8');
-    
+
                 response.on("data", function( data ) {
                     buffer += data;
                 });
-    
+
                 response.on("end", function() {
                     var results;
-    
+
                     try {
                         results = JSON.parse( buffer );
                     } catch ( error ) { }
-    
+
                     if ( typeof callback !== "undefined" && typeof results === "object" ) {
                         if ( typeof results.rev !== "undefined" ) {
                             callback();
@@ -118,13 +118,13 @@ Database.prototype = {
             }).on("error", function() {
                   callback( true );
             });
-    
+
             couchdb.write( JSON.stringify(data) );
             couchdb.end();
         });
     },
-    
-    
+
+
     /////////////////////////////
     // DATABASE DELETE REQUEST //
     /////////////////////////////
@@ -141,7 +141,7 @@ Database.prototype = {
                 }
             } else {
                 var revision = results._rev;
-    
+
                 var couchdb = http.request({
                     auth: this.db_user + ":" + this.db_pass,
                     host: this.db_host,
@@ -160,13 +160,13 @@ Database.prototype = {
                         callback( false, true );
                     }
                 });
-    
+
                 couchdb.end();
             }
         });
     }
-    
-    
+
+
 }
 
 
