@@ -75,7 +75,7 @@ Database.prototype = {
     // DATABASE WRITE REQUEST //
     ////////////////////////////
     write: function( path, data, callback ) {
-        exports.read( path, function( results, error ) {
+        this.read( path, function( results, error ) {
             if ( typeof error === "undefined" ) {
                 ////////////////////////////////
                 // CASE: DATA EXISTS, REWRITE //
@@ -134,7 +134,7 @@ Database.prototype = {
         // Currently just running this async, since status
         // is rather unimportant.
         //
-        exports.read( path, function( results, error ) {
+        this.read( path, function( results, error ) {
             if ( typeof error !== "undefined" && error ) {
                 if ( typeof callback !== "undefined" ) {
                     callback( false, true );
