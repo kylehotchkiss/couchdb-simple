@@ -133,6 +133,7 @@ Database.prototype.remove = function( path, callback ) {
                 callback( false, true );
             }
         } else {
+            var buffer;
             var revision = results._rev;
 
             var couchdb = http.request({
@@ -143,6 +144,12 @@ Database.prototype.remove = function( path, callback ) {
                 headers: { "If-Match": revision },
                 method: "DELETE"
             }, function( response ) {
+                response.setEncoding('utf8');
+                
+                response.on("data", function( data ) {
+                    buffer += data;
+                });
+                
                 response.on("end", function() {
                     if ( typeof callback !== "undefined") {
                         callback();
