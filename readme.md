@@ -1,5 +1,5 @@
 # couchdb-simple
-This is my first node module, use with caution. I will be integrating this into my own projects, so it will be battle-tested with time. I have used this database code for personal projects for several months and it's pretty bulletproof, IMO.
+I've been using this in my own production-level applications and it's worked quite wonderfully.
 
 This takes care of revisions and annoyances in the background to help speed you up. But it doesn't abstract things too much. You're really just throwing around JS objects. Make sure you standardize your database code and your interfaces to make sure you aren't onion-skinning your data, nor losing records.
 
